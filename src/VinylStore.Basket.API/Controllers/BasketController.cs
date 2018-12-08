@@ -32,19 +32,27 @@ namespace VinylStore.Basket.API.Controllers
             return CreatedAtAction(nameof(GetById), new {id = result.Id}, null);
         }
 
-        [HttpPut("items/{id:guid}")]
-        public async Task<IActionResult> Put(Guid id)
+        [HttpPut("{basketId:guid}/items/{id:guid}")]
+        public async Task<IActionResult> Put(Guid basketId, Guid id)
         {
             var result = await _mediator.Send(new UpdateBasketItemQuantityRequest
-                {BasketItemId = id, IsAddOperation = true});
+            {
+                BasketId = basketId,
+                BasketItemId = id,
+                IsAddOperation = true
+            });
             return Ok(result);
         }
 
-        [HttpDelete("items/{id:guid}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete("{basketId:guid}/items/{id:guid}")]
+        public async Task<IActionResult> Delete(Guid basketId, Guid id)
         {
             var result = await _mediator.Send(new UpdateBasketItemQuantityRequest
-                {BasketItemId = id, IsAddOperation = false});
+            {
+                BasketId = basketId,
+                BasketItemId = id,
+                IsAddOperation = false
+            });
             return Ok(result);
         }
     }

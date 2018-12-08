@@ -6,6 +6,8 @@ namespace VinylStore.Basket.Domain.Requests.Basket
 {
     public class UpdateBasketItemQuantityRequest : IRequest<BasketExtendedResponse>
     {
+        public Guid BasketId { get; set; }
+
         public Guid BasketItemId { get; set; }
 
         public bool IsAddOperation { get; set; }

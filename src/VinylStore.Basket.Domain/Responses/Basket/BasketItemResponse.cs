@@ -12,6 +12,7 @@ namespace VinylStore.Basket.Domain.Responses.Basket
         public decimal Price { get; set; }
         public string PictureUri { get; set; }
         public string GenreDescription { get; set; }
-        public string ArtistDescription { get; set; }
+
+        public string ArtistName { get; set; }
     }
 }

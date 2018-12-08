@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -19,11 +20,14 @@ namespace VinylStore.Basket.Domain.Handlers.Basket
             _mapper = mapper;
         }
 
-        public async Task<BasketExtendedResponse> Handle(CreateBasketRequest request,
+        public async Task<BasketExtendedResponse> Handle(
+            CreateBasketRequest request,
             CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<Entities.Basket>(request);
-            var result = await _repository.AddAsync(entity);
+            entity.Id = Guid.NewGuid();
+
+            var result = await _repository.AddOrUpdateAsync(entity);
             return _mapper.Map<BasketExtendedResponse>(result);
         }
     }

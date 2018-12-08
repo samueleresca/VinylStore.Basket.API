@@ -7,6 +7,20 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="8.0.0" />
         <PackageReference Include="MediatR" Version="5.1.0" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="VinylStore.Catalog.API.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\VinylStore.Catalog.API\src\VinylStore.Catalog.API.Client\bin\Debug\netstandard2.0\VinylStore.Catalog.API.Client.dll</HintPath>
+      </Reference>
+      <Reference Include="VinylStore.Catalog.API.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\VinylStore.Catalog.API\src\VinylStore.Catalog.API.Client\bin\Debug\netstandard2.0\VinylStore.Catalog.API.Contract.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

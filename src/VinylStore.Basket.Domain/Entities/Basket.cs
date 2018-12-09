@@ -5,7 +5,7 @@ namespace VinylStore.Basket.Domain.Entities
 {
     public class Basket
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public IList<BasketItem> Items { get; set; }
 

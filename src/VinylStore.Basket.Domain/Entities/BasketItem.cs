@@ -5,16 +5,17 @@ namespace VinylStore.Basket.Domain.Entities
     public class BasketItem
     {
         public Guid BasketItemId { get; set; }
-        public int Quantity { get; private set; }
 
-        public int IncreaseQuantity()
+        public int Quantity { get; set; }
+
+        public void IncreaseQuantity()
         {
-            return Quantity = Quantity++;
+            Quantity = Quantity+1;
         }
 
-        public int DecreaseQuantity()
+        public void DecreaseQuantity()
         {
-            return Quantity = Quantity--;
+            Quantity = Quantity-1;
         }
     }
 }

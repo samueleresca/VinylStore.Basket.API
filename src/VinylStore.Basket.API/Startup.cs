@@ -1,8 +1,19 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
+using VinylStore.Basket.API.Infrastructure.Configurations;
+using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
+using VinylStore.Basket.Domain.Infrastructure.Extensions;
+using VinylStore.Basket.Domain.Infrastructure.Repositories;
+using VinylStore.Basket.Domain.Infrastructure.Services;
+using VinylStore.Basket.Infrastructure;
+using VinylStore.Basket.Infrastructure.Repositories;
 
 namespace VinylStore.Basket.API
 {
@@ -15,13 +26,22 @@ namespace VinylStore.Basket.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<ICatalogService, CatalogService>();
+            services.Configure<BasketDataSourceSettings>(Configuration);
+
+            services
+                .AddMediator()
+                .AddCatalogService(new Uri("https://testapi.com"))
+                .AddAutoMapper();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

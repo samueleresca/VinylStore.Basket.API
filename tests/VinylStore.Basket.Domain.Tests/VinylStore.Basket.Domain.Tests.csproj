@@ -7,7 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\src\VinylStore.Basket.Domain\VinylStore.Basket.Domain.csproj" />
       <ProjectReference Include="..\..\src\VinylStore.Basket.Infrastructure\VinylStore.Basket.Infrastructure.csproj" />
-        
+      <ProjectReference Include="..\VinylStoreBasket.Fixtures\VinylStoreBasket.Fixtures.csproj" />
     </ItemGroup>
 
     <ItemGroup>

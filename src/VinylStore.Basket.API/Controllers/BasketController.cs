@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using VinylStore.Basket.API.Infrastructure.Filters;
 using VinylStore.Basket.Domain.Requests.Basket;
 
 namespace VinylStore.Basket.API.Controllers
 {
     [Route("api/basket")]
     [ApiController]
+    [JsonException]
     public class BasketController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -41,6 +43,7 @@ namespace VinylStore.Basket.API.Controllers
                 BasketItemId = id,
                 IsAddOperation = true
             });
+
             return Ok(result);
         }
 
@@ -53,6 +56,7 @@ namespace VinylStore.Basket.API.Controllers
                 BasketItemId = id,
                 IsAddOperation = false
             });
+
             return Ok(result);
         }
     }

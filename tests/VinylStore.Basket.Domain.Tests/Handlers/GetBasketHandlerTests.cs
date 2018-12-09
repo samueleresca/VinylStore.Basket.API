@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -12,9 +11,9 @@ using Xunit;
 
 namespace VinylStore.Basket.Domain.Tests.Handlers
 {
-    public class CreateBasketHandlerTests : IClassFixture<BasketContextFactory>
+    public class GetBasketHandlerTests : IClassFixture<BasketContextFactory>
     {
-        public CreateBasketHandlerTests(BasketContextFactory contextFactory)
+        public GetBasketHandlerTests(BasketContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
@@ -22,20 +21,16 @@ namespace VinylStore.Basket.Domain.Tests.Handlers
         private readonly BasketContextFactory _contextFactory;
 
         [Fact]
-        public async Task handle_should_create_a_new_record_and_return()
+        public async Task handle_should_retrieve_a_new_record_and_return_it()
         {
-            var handler = new CreateBasketHandler(
+            var handler = new GetBasketHandler(
                 _contextFactory.BasketRepository.Object,
                 new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<BasketProfile>())),
                 _contextFactory.CatalogService.Object);
-
             var result = await handler.Handle(
-                new CreateBasketRequest
+                new GetBasketRequest
                 {
-                    ItemsIds = new List<string>
-                        {"be05537d-5e80-45c1-bd8c-aa21c0f1251e", "f5da5ce4-091e-492e-a70a-22b073d75a52"},
-                    UserEmail = "samuele.resca@gmail.com",
-                    ValidityDate = DateTime.UtcNow.ToString()
+                    Id = new Guid("9ced6bfa-9659-462e-aece-49fe50613e96")
                 }, CancellationToken.None);
 
             result.Id.ShouldNotBeNull();

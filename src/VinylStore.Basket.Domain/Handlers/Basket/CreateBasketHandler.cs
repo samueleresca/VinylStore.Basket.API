@@ -33,7 +33,7 @@ namespace VinylStore.Basket.Domain.Handlers.Basket
             {
                 Items = request.ItemsIds.Select(x => new BasketItem {BasketItemId = new Guid(x)}).ToList(),
                 User = new BasketUser {Email = request.UserEmail},
-                ValidityDate = DateTime.Parse(request.ValidityDate),
+                ValidityDate = DateTimeOffset.Now.AddMonths(2),
                 Id = Guid.NewGuid().ToString()
             };
 

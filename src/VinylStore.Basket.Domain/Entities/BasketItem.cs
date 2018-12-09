@@ -10,12 +10,12 @@ namespace VinylStore.Basket.Domain.Entities
 
         public void IncreaseQuantity()
         {
-            Quantity = Quantity+1;
+            Quantity = Quantity + 1;
         }
 
         public void DecreaseQuantity()
         {
-            Quantity = Quantity-1;
+            Quantity = Quantity - 1;
         }
     }
 }

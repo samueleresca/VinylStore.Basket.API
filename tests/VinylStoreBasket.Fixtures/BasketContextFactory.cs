@@ -17,7 +17,7 @@ namespace VinylStoreBasket.Fixtures
     {
         private readonly Dictionary<Guid, BasketItemResponse> _itemResponses;
         private readonly Dictionary<Guid, string> _memoryCollection;
-        
+
         public readonly Mock<IBasketRepository> BasketRepository;
         public readonly Mock<ICatalogService> CatalogService;
 

@@ -1,5 +1,4 @@
 using System;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Infrastructure.Services;

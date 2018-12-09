@@ -3,12 +3,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Moq;
-using StackExchange.Redis;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
-using VinylStore.Basket.Domain.Infrastructure.Repositories;
-using VinylStore.Basket.Domain.Infrastructure.Services;
-using VinylStore.Basket.Infrastructure.Repositories;
 using VinylStoreBasket.Fixtures;
 
 namespace VinylStore.Catalog.Fixtures
@@ -28,12 +22,11 @@ namespace VinylStore.Catalog.Fixtures
             builder.ConfigureTestServices(services =>
             {
                 services.Replace(
-                    ServiceDescriptor.Scoped<IBasketRepository>(_ =>
-                       _basketContextFactory.BasketRepository.Object));
-                services.Replace(        ServiceDescriptor.Scoped<ICatalogService>(_ =>
+                    ServiceDescriptor.Scoped(_ =>
+                        _basketContextFactory.BasketRepository.Object));
+                services.Replace(ServiceDescriptor.Scoped(_ =>
                     _basketContextFactory.CatalogService.Object)
-                    );
-        
+                );
             });
         }
     }

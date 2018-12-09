@@ -19,13 +19,12 @@ namespace VinylStore.Basket.Infrastructure.Repositories
 
             try
             {
-                _database =  ConnectionMultiplexer.Connect(configuration).GetDatabase();
+                _database = ConnectionMultiplexer.Connect(configuration).GetDatabase();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-
         }
 
         public async Task<Domain.Entities.Basket> GetAsync(Guid id)

@@ -26,7 +26,6 @@ namespace VinylStore.Basket.API.Controllers
             return Ok(result);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Post(CreateBasketRequest request)
         {

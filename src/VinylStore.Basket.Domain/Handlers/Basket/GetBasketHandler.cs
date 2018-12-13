@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Infrastructure.Repositories;
+using VinylStore.Basket.Domain.Infrastructure.Services;
 using VinylStore.Basket.Domain.Requests.Basket;
 using VinylStore.Basket.Domain.Responses.Basket;
 

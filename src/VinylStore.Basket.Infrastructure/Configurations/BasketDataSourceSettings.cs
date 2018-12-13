@@ -1,4 +1,4 @@
-namespace VinylStore.Basket.API.Infrastructure.Configurations
+namespace VinylStore.Basket.Infrastructure.Configurations
 {
     public class BasketDataSourceSettings
     {

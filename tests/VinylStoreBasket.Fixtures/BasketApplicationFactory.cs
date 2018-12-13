@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using VinylStoreBasket.Fixtures;
 
-namespace VinylStore.Catalog.Fixtures
+namespace VinylStoreBasket.Fixtures
 {
     public class BasketApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class

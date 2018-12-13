@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,8 +33,7 @@ namespace VinylStore.Basket.Domain.Tests.Handlers
                 {
                     ItemsIds = new List<string>
                         {"be05537d-5e80-45c1-bd8c-aa21c0f1251e", "f5da5ce4-091e-492e-a70a-22b073d75a52"},
-                    UserEmail = "samuele.resca@gmail.com",
-                    ValidityDate = DateTime.UtcNow.ToString()
+                    UserEmail = "samuele.resca@gmail.com"
                 }, CancellationToken.None);
 
             result.Id.ShouldNotBeNull();

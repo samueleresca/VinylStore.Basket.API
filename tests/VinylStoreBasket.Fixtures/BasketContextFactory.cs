@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json;
 using VinylStore.Basket.Domain.Entities;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Infrastructure.Repositories;
+using VinylStore.Basket.Domain.Infrastructure.Services;
 using VinylStore.Basket.Domain.Responses.Basket;
 
 namespace VinylStoreBasket.Fixtures
@@ -45,6 +45,12 @@ namespace VinylStoreBasket.Fixtures
 
             BasketRepository = new Mock<IBasketRepository>();
             CatalogService = new Mock<ICatalogService>();
+
+
+            BasketRepository
+                .Setup(x => x.GetBaskets())
+                .Returns(() => _memoryCollection.Keys.Select(x => x.ToString()).ToList());
+
 
             BasketRepository
                 .Setup(x => x.GetAsync(It.IsAny<Guid>()))

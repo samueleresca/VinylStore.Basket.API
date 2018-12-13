@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Shouldly;
 using VinylStore.Basket.Domain.Responses.Basket;
-using VinylStore.Catalog.Fixtures;
 using VinylStoreBasket.Fixtures;
 using Xunit;
 

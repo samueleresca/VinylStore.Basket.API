@@ -20,7 +20,7 @@ namespace VinylStore.Basket.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<IActionResult>> GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _mediator.Send(new GetBasketRequest {Id = id});
             return Ok(result);

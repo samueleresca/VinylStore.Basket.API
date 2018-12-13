@@ -5,11 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VinylStore.Basket.API.Infrastructure.Configurations;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Infrastructure.Extensions;
 using VinylStore.Basket.Domain.Infrastructure.Repositories;
 using VinylStore.Basket.Domain.Infrastructure.Services;
+using VinylStore.Basket.Infrastructure.Configurations;
 using VinylStore.Basket.Infrastructure.Repositories;
 
 namespace VinylStore.Basket.API

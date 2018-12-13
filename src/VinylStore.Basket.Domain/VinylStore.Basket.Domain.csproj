@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="8.0.0" />
-        <PackageReference Include="MediatR" Version="5.1.0" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.1.0" />
+        <PackageReference Include="MediatR" Version="6.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="NServiceBus" Version="7.1.6" />
+        <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
     </ItemGroup>
 
     <ItemGroup>
@@ -15,9 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46">
-        <HintPath>..\..\..\..\.nuget\packages\stackexchange.redis\2.0.519\lib\netstandard2.0\StackExchange.Redis.dll</HintPath>
-      </Reference>
       <Reference Include="VinylStore.Catalog.API.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\..\..\VinylStore.Catalog.API\src\VinylStore.Catalog.API.Client\bin\Debug\netstandard2.0\VinylStore.Catalog.API.Client.dll</HintPath>
       </Reference>

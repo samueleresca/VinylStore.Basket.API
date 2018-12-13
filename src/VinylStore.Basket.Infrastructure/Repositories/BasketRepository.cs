@@ -1,21 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using VinylStore.Basket.API.Infrastructure.Configurations;
 using VinylStore.Basket.Domain.Infrastructure.Repositories;
+using VinylStore.Basket.Infrastructure.Configurations;
 
 namespace VinylStore.Basket.Infrastructure.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
         private readonly IDatabase _database;
+        private readonly BasketDataSourceSettings _settings;
 
         public BasketRepository(IOptions<BasketDataSourceSettings> options)
         {
-            var configuration = ConfigurationOptions.Parse(options.Value.ConnectionString, true);
+            _settings = options.Value;
+            var configuration = ConfigurationOptions.Parse(_settings.ConnectionString, true);
             configuration.ResolveDns = true;
+
 
             try
             {
@@ -26,6 +31,13 @@ namespace VinylStore.Basket.Infrastructure.Repositories
                 Console.WriteLine(e.ToString());
             }
         }
+
+        public IEnumerable<string> GetBaskets()
+        {
+            var keys = _database.Multiplexer.GetServer(_settings.ConnectionString).Keys();
+            return keys?.Select(k => k.ToString());
+        }
+
 
         public async Task<Domain.Entities.Basket> GetAsync(Guid id)
         {
@@ -39,11 +51,6 @@ namespace VinylStore.Basket.Infrastructure.Repositories
             if (!created) return null;
 
             return await GetAsync(new Guid(item.Id));
-        }
-
-        public async Task<bool> DeleteBasketAsync(string id)
-        {
-            return await _database.KeyDeleteAsync(id);
         }
     }
 }

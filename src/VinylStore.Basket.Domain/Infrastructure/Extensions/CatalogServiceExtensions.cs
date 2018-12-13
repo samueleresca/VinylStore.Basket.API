@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Infrastructure.Services;
 using VinylStore.Catalog.API.Client;
 

@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using VinylStore.Basket.Domain.Infrastructure.CatalogEnricher;
 using VinylStore.Basket.Domain.Responses.Basket;
 using VinylStore.Catalog.API.Client;
 using VinylStore.Catalog.Contract.Item;

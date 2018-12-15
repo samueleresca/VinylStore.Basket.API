@@ -20,8 +20,15 @@ namespace VinylStore.Basket.Domain.Infrastructure.Services
             BasketItemResponse item,
             CancellationToken cancellationToken)
         {
-            var result = await _catalogClient.Item.Get(new Guid(item.BasketItemId), cancellationToken);
-            return Map(item, result);
+            try
+            {
+                var result = await _catalogClient.Item.Get(new Guid(item.BasketItemId), cancellationToken);
+                return Map(item, result);
+            }
+            catch (Exception e)
+            {
+                return item;
+            }
         }
 
         private static BasketItemResponse Map(BasketItemResponse item, ItemResponse result)

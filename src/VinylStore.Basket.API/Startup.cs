@@ -31,10 +31,11 @@ namespace VinylStore.Basket.API
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<ICatalogService, CatalogService>();
             services.Configure<BasketDataSourceSettings>(Configuration);
+            
 
             services
                 .AddMediator()
-                .AddCatalogService(new Uri("https://testapi.com"))
+                .AddCatalogService(new Uri("http://localhost:5000/"))
                 .AddAutoMapper();
         }
 

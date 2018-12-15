@@ -18,10 +18,8 @@ namespace VinylStore.Basket.Infrastructure.Repositories
         public BasketRepository(IOptions<BasketDataSourceSettings> options)
         {
             _settings = options.Value;
-            var configuration = ConfigurationOptions.Parse(_settings.ConnectionString, true);
-            configuration.ResolveDns = true;
-
-
+            var configuration = ConfigurationOptions.Parse(_settings.ConnectionString);
+            configuration.AbortOnConnectFail = false;
             try
             {
                 _database = ConnectionMultiplexer.Connect(configuration).GetDatabase();

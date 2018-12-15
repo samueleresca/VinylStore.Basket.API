@@ -1,0 +1,17 @@
+version: "3"
+services:
+    web:
+        build: .
+        networks:
+            - bridge
+        ports:
+            - "5002:5002"
+        depends_on:
+            - redisdata
+            
+    redisdata:
+        image: "redis:alpine"
+    
+networks:
+    bridge:
+        driver: bridge

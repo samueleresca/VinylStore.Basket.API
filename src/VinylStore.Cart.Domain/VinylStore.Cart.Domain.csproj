@@ -11,17 +11,4 @@
         <PackageReference Include="NServiceBus" Version="7.1.6" />
         <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="VinylStore.Catalog.API.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>ClientLibraries\VinylStore.Catalog.API.Client.dll</HintPath>
-      </Reference>
-      <Reference Include="VinylStore.Catalog.API.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>ClientLibraries\VinylStore.Catalog.API.Contract.dll</HintPath>
-      </Reference>
-    </ItemGroup>
 </Project>

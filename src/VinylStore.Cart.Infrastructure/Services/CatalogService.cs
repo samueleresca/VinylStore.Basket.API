@@ -1,12 +1,14 @@
 using System;
 using System.Globalization;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using VinylStore.Cart.Domain.Infrastructure.Services;
 using VinylStore.Cart.Domain.Responses.Cart;
 using VinylStore.Catalog.API.Client;
 using VinylStore.Catalog.Contract.Item;
 
-namespace VinylStore.Cart.Domain.Infrastructure.Services
+namespace VinylStore.Cart.Infrastructure.Services
 {
     public class CatalogService : ICatalogService
     {

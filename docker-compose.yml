@@ -1,9 +1,10 @@
 version: "3"
 services:
-    web:
+    cart_api:
+        container_name: cart_api
         build: .
         networks:
-            - bridge
+            - my_network
         ports:
             - "5002:5002"
         depends_on:
@@ -13,5 +14,5 @@ services:
         image: "redis:alpine"
     
 networks:
-    bridge:
+    my_network:
         driver: bridge

@@ -8,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using VinylStore.Cart.Domain.Infrastructure.Extensions;
 using VinylStore.Cart.Domain.Infrastructure.Repositories;
 using VinylStore.Cart.Domain.Infrastructure.Services;
+using VinylStore.Cart.Infrastructure;
 using VinylStore.Cart.Infrastructure.Configurations;
 using VinylStore.Cart.Infrastructure.Repositories;
+using VinylStore.Cart.Infrastructure.Services;
 
 namespace VinylStore.Cart.API
 {
@@ -35,7 +37,7 @@ namespace VinylStore.Cart.API
 
             services
                 .AddMediator()
-                .AddCatalogService(new Uri("http://localhost:5000/"))
+                .AddCatalogService(new Uri("http://catalog_api:5000/"))
                 .AddAutoMapper();
         }
 

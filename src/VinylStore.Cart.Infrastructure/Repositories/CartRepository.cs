@@ -20,6 +20,7 @@ namespace VinylStore.Cart.Infrastructure.Repositories
             _settings = options.Value;
             var configuration = ConfigurationOptions.Parse(_settings.ConnectionString);
             configuration.AbortOnConnectFail = false;
+            
             try
             {
                 _database = ConnectionMultiplexer.Connect(configuration).GetDatabase();

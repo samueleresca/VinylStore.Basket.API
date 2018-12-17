@@ -2,6 +2,6 @@ namespace VinylStore.Cart.Infrastructure.Configurations
 {
     public class CartDataSourceSettings
     {
-        public string ConnectionString { get; set; }
+        public string RedisConnectionString { get; set; }
     }
 }

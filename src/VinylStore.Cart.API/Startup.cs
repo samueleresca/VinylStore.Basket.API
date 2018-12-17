@@ -37,7 +37,7 @@ namespace VinylStore.Cart.API
 
             services
                 .AddMediator()
-                .AddCatalogService(new Uri("http://catalog_api:5000/"))
+                .AddCatalogService(new Uri(Configuration["CatalogApiUrl"]))
                 .AddAutoMapper();
         }
 

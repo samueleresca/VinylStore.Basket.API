@@ -18,7 +18,7 @@ namespace VinylStore.Cart.Infrastructure.Repositories
         public CartRepository(IOptions<CartDataSourceSettings> options)
         {
             _settings = options.Value;
-            var configuration = ConfigurationOptions.Parse(_settings.ConnectionString);
+            var configuration = ConfigurationOptions.Parse(_settings.RedisConnectionString);
             configuration.AbortOnConnectFail = false;
             
             try
@@ -33,7 +33,7 @@ namespace VinylStore.Cart.Infrastructure.Repositories
 
         public IEnumerable<string> GetCarts()
         {
-            var keys = _database.Multiplexer.GetServer(_settings.ConnectionString).Keys();
+            var keys = _database.Multiplexer.GetServer(_settings.RedisConnectionString).Keys();
             return keys?.Select(k => k.ToString());
         }
 

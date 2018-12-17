@@ -2,15 +2,22 @@ version: "3"
 services:
     cart_api:
         container_name: cart_api
+        environment:
+          - ASPNETCORE_ENVIRONMENT=${ASP_NET_CORE_ENVIRONMENT}
         build: .
         networks:
             - my_network
         ports:
             - "5002:5002"
         depends_on:
-            - redisdata
+            - cart_db
             
-    redisdata:
+    cart_db:
+        container_name: cart_db
+        networks:
+            - my_network
+        ports:
+            - "6379:6379"
         image: "redis:alpine"
     
 networks:

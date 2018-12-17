@@ -37,6 +37,7 @@ namespace VinylStore.Cart.Infrastructure.Services
         private static CartItemResponse Map(CartItemResponse item, ItemResponse result)
         {
             item.Description = result.Description;
+            item.LabelName = result.LabelName;
             item.Name = result.Name;
             item.Price = result.Price.Amount.ToString(CultureInfo.InvariantCulture);
             item.ArtistName = result.Artist.ArtistName;

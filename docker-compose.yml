@@ -19,7 +19,7 @@ services:
         ports:
             - "6379:6379"
         image: "redis:alpine"
-    
+
 networks:
     my_network:
         driver: bridge

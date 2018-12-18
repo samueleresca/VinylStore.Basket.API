@@ -10,6 +10,7 @@ using VinylStore.Cart.Domain.Infrastructure.Repositories;
 using VinylStore.Cart.Domain.Infrastructure.Services;
 using VinylStore.Cart.Infrastructure;
 using VinylStore.Cart.Infrastructure.Configurations;
+using VinylStore.Cart.Infrastructure.Extensions;
 using VinylStore.Cart.Infrastructure.Repositories;
 using VinylStore.Cart.Infrastructure.Services;
 

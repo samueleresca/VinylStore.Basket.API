@@ -19,7 +19,7 @@ namespace VinylStore.Cart.Infrastructure
                 {
                     client.BaseAddress = uri;
                 })
-                .SetHandlerLifetime(TimeSpan.FromMinutes(5)) //Set lifetime to five minutes
+                .SetHandlerLifetime(TimeSpan.FromMinutes(2)) //Set lifetime to five minutes
                 .AddPolicyHandler(RetryPolicy())
                 .AddPolicyHandler(CircuitBreakerPolicy());
             
@@ -31,7 +31,7 @@ namespace VinylStore.Cart.Infrastructure
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-                .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2,
+                .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2,
                     retryAttempt)));
         }
         
@@ -39,7 +39,7 @@ namespace VinylStore.Cart.Infrastructure
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
-                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
+                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(2));
         }
     }
 }

@@ -26,9 +26,9 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
         public async Task handle_should_remove_items_with_quantity_0()
         {
             var handler = new UpdateCartItemQuantity(
-                _contextFactory.CartRepository.Object,
+                _contextFactory.GetCartRepository(),
                 new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CartProfile>())),
-                _contextFactory.CatalogService.Object);
+                _contextFactory.GetCatalogService());
 
             var result = await handler.Handle(
                 new UpdateCartItemQuantityRequest
@@ -47,9 +47,9 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
         public async Task handle_should_retrieve_item_with_increase_quantity()
         {
             var handler = new UpdateCartItemQuantity(
-                _contextFactory.CartRepository.Object,
+                _contextFactory.GetCartRepository(),
                 new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CartProfile>())),
-                _contextFactory.CatalogService.Object);
+                _contextFactory.GetCatalogService());
 
             var result = await handler.Handle(
                 new UpdateCartItemQuantityRequest

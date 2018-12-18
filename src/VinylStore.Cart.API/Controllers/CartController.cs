@@ -32,7 +32,7 @@ namespace VinylStore.Cart.API.Controllers
             var result = await _mediator.Send(request);
             return CreatedAtAction(nameof(GetById), new {id = result.Id}, null);
         }
-
+        
         [HttpPut("{cartId:guid}/items/{id:guid}")]
         public async Task<IActionResult> Put(Guid cartId, Guid id)
         {

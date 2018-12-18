@@ -34,12 +34,15 @@ namespace VinylStore.Cart.Domain.Handlers.Cart
                 cartDetail.Items.FirstOrDefault(_ => _.CartItemId == request.CartItemId)?.DecreaseQuantity();
 
             var cartItemsList = cartDetail.Items.ToList();
+            
             cartItemsList.RemoveAll(x => x.Quantity <= 0);
 
             cartDetail.Items = cartItemsList;
 
-            var response = _mapper.Map<CartExtendedResponse>(cartDetail);
+            await  _repository.AddOrUpdateAsync(cartDetail);
 
+            var response = _mapper.Map<CartExtendedResponse>(cartDetail);
+            
             var tasks = response.Items
                 .Select(async x => await _catalogService.EnrichCartItem(x, cancellationToken));
 

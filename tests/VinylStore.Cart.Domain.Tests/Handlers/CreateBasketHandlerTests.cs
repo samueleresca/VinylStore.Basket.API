@@ -23,10 +23,11 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
         [Fact]
         public async Task handle_should_create_a_new_record_and_return()
         {
+            
             var handler = new CreateCartHandler(
-                _contextFactory.CartRepository.Object,
+                _contextFactory.GetCartRepository(),
                 new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CartProfile>())),
-                _contextFactory.CatalogService.Object);
+                _contextFactory.GetCatalogService());
 
             var result = await handler.Handle(
                 new CreateCartRequest

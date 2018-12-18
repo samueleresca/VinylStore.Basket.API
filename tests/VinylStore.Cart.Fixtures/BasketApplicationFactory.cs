@@ -22,9 +22,9 @@ namespace VinylStore.Cart.Fixtures
             {
                 services.Replace(
                     ServiceDescriptor.Scoped(_ =>
-                        _cartContextFactory.CartRepository.Object));
+                        _cartContextFactory.GetCartRepository()));
                 services.Replace(ServiceDescriptor.Scoped(_ =>
-                    _cartContextFactory.CatalogService.Object)
+                    _cartContextFactory.GetCatalogService())
                 );
             });
         }

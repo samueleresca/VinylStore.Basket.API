@@ -24,9 +24,9 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
         public async Task handle_should_retrieve_a_new_record_and_return_it()
         {
             var handler = new GetCartHandler(
-                _contextFactory.CartRepository.Object,
+                _contextFactory.GetCartRepository(),
                 new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CartProfile>())),
-                _contextFactory.CatalogService.Object);
+                _contextFactory.GetCatalogService());
             var result = await handler.Handle(
                 new GetCartRequest
                 {

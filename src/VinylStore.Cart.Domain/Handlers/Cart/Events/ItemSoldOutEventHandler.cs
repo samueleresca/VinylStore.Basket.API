@@ -21,11 +21,13 @@ namespace VinylStore.Cart.Domain.Handlers.Cart.Events
         {
             var cartIds = _cartRepository.GetCarts().ToList();
 
-            foreach (var id in cartIds)
+            var tasks = cartIds.Select(async x =>
             {
-                var cart = await _cartRepository.GetAsync(new Guid(id));
+                var cart = await _cartRepository.GetAsync(new Guid(x));
                 await RemoveItemsInCart(message.itemsId, cart);
-            }
+            });
+
+            await Task.WhenAll(tasks);
         }
 
         private async Task RemoveItemsInCart(List<string> eventItemsId, Entities.Cart cart)
@@ -36,7 +38,7 @@ namespace VinylStore.Cart.Domain.Handlers.Cart.Events
 
             if (toDelete == null || toDelete.Count == 0) return;
 
-            foreach (var item in toDelete) cart?.Items?.Remove(item);
+            foreach (var item in toDelete) cart.Items?.Remove(item);
 
             await _cartRepository.AddOrUpdateAsync(cart);
         }

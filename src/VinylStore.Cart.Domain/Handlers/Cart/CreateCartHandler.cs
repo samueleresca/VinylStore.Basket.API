@@ -31,7 +31,7 @@ namespace VinylStore.Cart.Domain.Handlers.Cart
         {
             var entity = new Entities.Cart
             {
-                Items = request.ItemsIds.Select(x => new CartItem {CartItemId = new Guid(x), Quantity = 1}).ToList(),
+                Items = request.ItemsIds.Select(x => new CartItem {CartItemId = x, Quantity = 1}).ToList(),
                 User = new CartUser {Email = request.UserEmail},
                 ValidityDate = DateTimeOffset.Now.AddMonths(2),
                 Id = Guid.NewGuid().ToString()

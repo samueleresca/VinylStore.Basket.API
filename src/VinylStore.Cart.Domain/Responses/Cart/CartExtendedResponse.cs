@@ -6,7 +6,7 @@ namespace VinylStore.Cart.Domain.Responses.Cart
 {
     public class CartExtendedResponse
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public IList<CartItemResponse> Items { get; set; }
 

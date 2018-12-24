@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using NServiceBus;
 
 namespace VinylStore.Cart.Fixtures
 {
@@ -18,8 +19,10 @@ namespace VinylStore.Cart.Fixtures
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureTestServices(services =>
+           builder.UseEnvironment("Testing")
+            .ConfigureTestServices(services =>
             {
+                services.AddSingleton<IEndpointInstance>(x =>  null);
                 services.Replace(
                     ServiceDescriptor.Scoped(_ =>
                         _cartContextFactory.GetCartRepository()));

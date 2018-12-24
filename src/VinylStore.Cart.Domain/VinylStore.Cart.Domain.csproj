@@ -9,6 +9,13 @@
         <PackageReference Include="MediatR" Version="6.0.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="NServiceBus" Version="7.1.6" />
+        <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.1" />
         <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\VinylStore.Cart.Events\VinylStore.Cart.Events.csproj" />
+    </ItemGroup>
+    
 </Project>

@@ -4,7 +4,7 @@ namespace VinylStore.Cart.Domain.Entities
 {
     public class CartItem
     {
-        public Guid CartItemId { get; set; }
+        public string CartItemId { get; set; }
 
         public int Quantity { get; set; }
 

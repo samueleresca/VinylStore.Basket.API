@@ -20,7 +20,7 @@ namespace VinylStore.Cart.Infrastructure.Policies
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
-                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(2));
+                .CircuitBreakerAsync(3, TimeSpan.FromMinutes(1));
         }
     }
 }

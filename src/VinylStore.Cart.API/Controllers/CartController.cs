@@ -20,7 +20,7 @@ namespace VinylStore.Cart.API.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(string id)
         {
             var result = await _mediator.Send(new GetCartRequest {Id = id});
             return Ok(result);
@@ -34,7 +34,7 @@ namespace VinylStore.Cart.API.Controllers
         }
         
         [HttpPut("{cartId:guid}/items/{id:guid}")]
-        public async Task<IActionResult> Put(Guid cartId, Guid id)
+        public async Task<IActionResult> Put(string cartId, string id)
         {
             var result = await _mediator.Send(new UpdateCartItemQuantityRequest
             {
@@ -47,7 +47,7 @@ namespace VinylStore.Cart.API.Controllers
         }
 
         [HttpDelete("{cartId:guid}/items/{id:guid}")]
-        public async Task<IActionResult> Delete(Guid cartId, Guid id)
+        public async Task<IActionResult> Delete(string cartId, string id)
         {
             var result = await _mediator.Send(new UpdateCartItemQuantityRequest
             {

@@ -18,12 +18,14 @@ namespace VinylStore.Cart.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            CurrentEnvironment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment CurrentEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,7 +41,8 @@ namespace VinylStore.Cart.API
             services
                 .AddMediator()
                 .AddCatalogService(new Uri(Configuration["CatalogApiUrl"]))
-                .AddAutoMapper();
+                .AddAutoMapper()
+                .AddRabbitMQ("Test123", "host=localhost:5672;username=guest;password=guest", CurrentEnvironment.EnvironmentName);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -33,8 +33,8 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
             var result = await handler.Handle(
                 new UpdateCartItemQuantityRequest
                 {
-                    CartId = new Guid("9ced6bfa-9659-462e-aece-49fe50613e96"),
-                    CartItemId = new Guid("be05537d-5e80-45c1-bd8c-aa21c0f1251e"),
+                    CartId = "9ced6bfa-9659-462e-aece-49fe50613e96",
+                    CartItemId = "be05537d-5e80-45c1-bd8c-aa21c0f1251e",
                     IsAddOperation = false
                 }, CancellationToken.None);
 
@@ -54,8 +54,8 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
             var result = await handler.Handle(
                 new UpdateCartItemQuantityRequest
                 {
-                    CartId = new Guid("9ced6bfa-9659-462e-aece-49fe50613e96"),
-                    CartItemId = new Guid("be05537d-5e80-45c1-bd8c-aa21c0f1251e"),
+                    CartId = "9ced6bfa-9659-462e-aece-49fe50613e96",
+                    CartItemId = "be05537d-5e80-45c1-bd8c-aa21c0f1251e",
                     IsAddOperation = true
                 }, CancellationToken.None);
 

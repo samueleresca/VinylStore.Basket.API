@@ -38,9 +38,9 @@ namespace VinylStore.Cart.Infrastructure.Repositories
         }
 
 
-        public async Task<Domain.Entities.Cart> GetAsync(Guid id)
+        public async Task<Domain.Entities.Cart> GetAsync(string id)
         {
-            var data = await _database.StringGetAsync(id.ToString());
+            var data = await _database.StringGetAsync(id);
             return data.IsNullOrEmpty ? null : JsonConvert.DeserializeObject<Domain.Entities.Cart>(data);
         }
 
@@ -49,7 +49,7 @@ namespace VinylStore.Cart.Infrastructure.Repositories
             var created = await _database.StringSetAsync(item.Id, JsonConvert.SerializeObject(item));
             if (!created) return null;
 
-            return await GetAsync(new Guid(item.Id));
+            return await GetAsync(item.Id);
         }
     }
 }

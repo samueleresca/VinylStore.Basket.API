@@ -6,6 +6,6 @@ namespace VinylStore.Cart.Domain.Requests.Cart
 {
     public class GetCartRequest : IRequest<CartExtendedResponse>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

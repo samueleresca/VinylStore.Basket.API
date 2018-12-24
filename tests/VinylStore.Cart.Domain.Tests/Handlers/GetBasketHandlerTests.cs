@@ -30,7 +30,7 @@ namespace VinylStore.Cart.Domain.Tests.Handlers
             var result = await handler.Handle(
                 new GetCartRequest
                 {
-                    Id = new Guid("9ced6bfa-9659-462e-aece-49fe50613e96")
+                    Id = "9ced6bfa-9659-462e-aece-49fe50613e96"
                 }, CancellationToken.None);
 
             result.Id.ShouldNotBeNull();

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\VinylStore.Cart.Domain\VinylStore.Cart.Domain.csproj" />
+      <ProjectReference Include="..\..\src\VinylStore.Cart.Events\VinylStore.Cart.Events.csproj" />
       <ProjectReference Include="..\..\src\VinylStore.Cart.Infrastructure\VinylStore.Cart.Infrastructure.csproj" />
       <ProjectReference Include="..\VinylStore.Cart.Fixtures\VinylStore.Cart.Fixtures.csproj" />
     </ItemGroup>
@@ -23,4 +24,5 @@
         </PackageReference>
         <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
     </ItemGroup>
+
 </Project>

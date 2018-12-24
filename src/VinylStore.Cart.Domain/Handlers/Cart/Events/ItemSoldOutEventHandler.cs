@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 using VinylStore.Cart.Domain.Infrastructure.Repositories;
-using VinylStore.Cart.Domain.Requests.Cart;
+using VinylStore.Cart.Events;
 
 namespace VinylStore.Cart.Domain.Handlers.Cart.Events
 {
-    public class ItemSoldOutEventHandler : IHandleMessages<ItemSoldOutMessage>
+    public class ItemSoldOutEventHandler : IHandleMessages<ItemSoldOutEvent>
     {
         private readonly ICartRepository _cartRepository;
 
@@ -17,24 +15,24 @@ namespace VinylStore.Cart.Domain.Handlers.Cart.Events
             _cartRepository = cartRepository;
         }
 
-        public async Task Handle(ItemSoldOutMessage message, IMessageHandlerContext context)
+        public async Task Handle(ItemSoldOutEvent @event, IMessageHandlerContext context)
         {
             var cartIds = _cartRepository.GetCarts().ToList();
 
             var tasks = cartIds.Select(async x =>
             {
-                var cart = await _cartRepository.GetAsync(new Guid(x));
-                await RemoveItemsInCart(message.itemsId, cart);
+                var cart = await _cartRepository.GetAsync(x);
+                await RemoveItemsInCart(@event.Id, cart);
             });
 
             await Task.WhenAll(tasks);
         }
 
-        private async Task RemoveItemsInCart(List<string> eventItemsId, Entities.Cart cart)
+        private async Task RemoveItemsInCart(string itemToRemove, Entities.Cart cart)
         {
-            if (eventItemsId == null || eventItemsId.Count == 0) return;
+            if (string.IsNullOrEmpty(itemToRemove)) return;
 
-            var toDelete = cart?.Items?.Where(x => eventItemsId.Contains(x.CartItemId.ToString())).ToList();
+            var toDelete = cart?.Items?.Where(x => x.CartItemId == itemToRemove).ToList();
 
             if (toDelete == null || toDelete.Count == 0) return;
 

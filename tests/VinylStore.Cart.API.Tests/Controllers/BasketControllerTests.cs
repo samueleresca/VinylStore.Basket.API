@@ -8,16 +8,19 @@ using Shouldly;
 using VinylStore.Cart.Domain.Responses.Cart;
 using VinylStore.Cart.Fixtures;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace VinylStore.Cart.API.Tests.Controllers
 {
     public class CartControllerTests : IClassFixture<CartApplicationFactory<Startup>>
     {
         private readonly CartApplicationFactory<Startup> _factory;
+        private readonly ITestOutputHelper _testOutputHelper;
 
-        public CartControllerTests(CartApplicationFactory<Startup> factory)
+        public CartControllerTests(CartApplicationFactory<Startup> factory, ITestOutputHelper testOutputHelper)
         {
             _factory = factory;
+            _testOutputHelper = testOutputHelper;
         }
 
         [Theory]
@@ -38,14 +41,16 @@ namespace VinylStore.Cart.API.Tests.Controllers
             var client = _factory.CreateClient();
 
             var response = await client.GetAsync(url);
+
+            response.EnsureSuccessStatusCode();
+
             var responseContent = await response.Content.ReadAsStringAsync();
             var responseData = JsonConvert.DeserializeObject<CartExtendedResponse>(responseContent);
 
-            responseData.Id.ToString().ShouldBe("9ced6bfa-9659-462e-aece-49fe50613e96");
+            responseData.Id.ShouldBe("9ced6bfa-9659-462e-aece-49fe50613e96");
             responseData.Items.Count.ShouldNotBeNull();
             responseData.User.Email.ShouldNotBeEmpty();
 
-            response.EnsureSuccessStatusCode();
         }
 
         [Theory]
@@ -86,10 +91,14 @@ namespace VinylStore.Cart.API.Tests.Controllers
 
             var response = await client.PutAsync($"/api/cart/{cartId}/items/{cartItemId}",
                 new StringContent(string.Empty));
-
+         
+            var test = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(test);
+            
             response.EnsureSuccessStatusCode();
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
+           
         }
     }
 }

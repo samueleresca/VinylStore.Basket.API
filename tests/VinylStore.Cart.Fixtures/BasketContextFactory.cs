@@ -30,8 +30,8 @@ namespace VinylStore.Cart.Fixtures
 
 
             cartRepository
-                .Setup(x => x.GetAsync(It.IsAny<Guid>()))
-                .Returns((Guid id) =>
+                .Setup(x => x.GetAsync(It.IsAny<string>()))
+                .Returns((string id) =>
                     Task.FromResult(JsonConvert.DeserializeObject<Domain.Entities.Cart>(memoryCollection[id.ToString()])));
 
             cartRepository

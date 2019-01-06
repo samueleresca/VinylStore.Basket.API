@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,18 +43,20 @@ namespace VinylStore.Cart.API
                 .AddMediator()
                 .AddCatalogService(new Uri(Configuration["CatalogApiUrl"]))
                 .AddAutoMapper()
-                .AddRabbitMQ("Test123", "host=localhost:5672;username=guest;password=guest", CurrentEnvironment.EnvironmentName);
+                .AddRabbitMQ(Configuration.GetSection("ESB:EndPointName").Value,
+                    Configuration.GetSection("ESB:ConnectionString").Value,
+                    CurrentEnvironment.EnvironmentName);
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-            else
-                app.UseHsts();
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseHsts()
+               .UseHttpsRedirection()
+               .UseMvc();
         }
     }
 }

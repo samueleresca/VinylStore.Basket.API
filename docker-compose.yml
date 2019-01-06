@@ -8,7 +8,8 @@ services:
         networks:
             - my_network
         ports:
-            - "5002:5002"
+            - 5002:5002
+            - 5003:5003
         depends_on:
             - cart_db
             
@@ -17,8 +18,8 @@ services:
         networks:
             - my_network
         ports:
-            - "6379:6379"
-        image: "redis:alpine"
+            - 6378:6378
+        image: redis:alpine
 
 networks:
     my_network:

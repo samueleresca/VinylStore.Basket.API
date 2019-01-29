@@ -1,10 +1,17 @@
-version: "3"
+version: "3.7"
 services:
     cart_api:
         container_name: cart_api
         environment:
-          - ASPNETCORE_ENVIRONMENT=${ASP_NET_CORE_ENVIRONMENT}
-        build: .
+            - ASPNETCORE_URLS=http://*:5002;https://*:5003
+            - ASPNETCORE_ENVIRONMENT=Integration
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=MyPassword123$$
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.dotnet/https/localhost.pfx
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./certificate/:/root/.dotnet/https
         networks:
             - my_network
         ports:

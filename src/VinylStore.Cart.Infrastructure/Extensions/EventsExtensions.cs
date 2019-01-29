@@ -23,6 +23,8 @@ namespace VinylStore.Cart.Infrastructure.Extensions
                 {
                     customizations.ExistingServices(services);
                 });
+            
+            endpointConfiguration.EnableInstallers();
 
             endpointConfiguration
                 .Conventions()

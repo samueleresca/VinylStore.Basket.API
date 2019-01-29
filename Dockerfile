@@ -1,8 +1,13 @@
-FROM microsoft/dotnet
-COPY . /app
+FROM microsoft/dotnet:sdk AS builder
 WORKDIR /app
-RUN ["dotnet", "restore"]
-RUN ["dotnet", "build"]
-EXPOSE 6379/tcp
-RUN chmod +x ./entrypoint.sh
-CMD /bin/bash ./entrypoint.sh
+COPY . . 
+RUN dotnet restore ./VinylStore.Cart.API.sln
+COPY . .
+
+FROM builder AS publish
+RUN dotnet publish -o /app
+
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "VinylStore.Cart.API.dll"]
